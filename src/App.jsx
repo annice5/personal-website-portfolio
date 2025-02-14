@@ -3,15 +3,15 @@ import About from "./pages/components/about";
 import Resume from "./pages/components/resume";
 import Services from "./pages/components/services";
 import Projects from "./pages/components/projects";
-import HireMe from "./pages/components/hireMe";
-import ContactMe from "./pages/components/contactMe";
 import Landing from "./pages";
+import Footer from "./pages/components/footer";
+import Contact from "./pages/components/contact";
 
-function App () {
+function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Landing/>,
+      element: <Landing />,
       children: [
         {
           path: "about",
@@ -29,13 +29,10 @@ function App () {
           path: "projects",
           element: <Projects />,
         },
+
         {
-          path: "hireMe",
-          element: <HireMe />,
-        },
-        {
-          path: "contactMe",
-          element: <ContactMe />,
+          path: "contact",
+          element: <Contact/>,
         },
         {
           path: "footer",
