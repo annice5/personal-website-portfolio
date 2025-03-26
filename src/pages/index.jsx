@@ -1,21 +1,22 @@
 import About from "./components/about";
-import Contact from "./components/contact";
-import Footer from "./components/footer";
+import End from "./components/end";
+import Experience from "./components/experience";
 import Hero from "./components/hero";
 import Projects from "./components/projects";
-import Resume from "./components/resume";
 import Services from "./components/services";
+import Skills from "./components/skills";
 
 const Landing = () => {
   return (
     <div>
+      
       <Hero />
       <About />
-      <Resume />
       <Services />
       <Projects />
-      <Contact/>
-      <Footer />
+      <Experience/>
+      <Skills/>
+       <End/>
     </div>
   );
 };

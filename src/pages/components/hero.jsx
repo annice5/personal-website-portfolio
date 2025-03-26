@@ -1,130 +1,79 @@
-import React, { useState, useEffect } from "react";
-import Typewriter from "typewriter-effect";
-import About from "./about";
-import ContactMe from "./contact";
-import Resume from "./resume";
-import Projects from "./projects";
-import Services from "./services";
+import heroImage from '../../assets/images/heroImage.png';
+import heroImageTwo from '../../assets/images/heroImageTwo.png'
+import { useState, useEffect } from 'react';
 
 const Hero = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const [roleText, setRoleText] = useState('');
+  const roles = [" A Frontend Developer"];
+  const roleSpeed = 150;
+  const cursor = "|";
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = document.querySelectorAll("section");
-      let currentSection = "";
+    let roleIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
 
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 100; // Adjust for navbar height
-        const sectionHeight = section.offsetHeight;
+    const interval = setInterval(() => {
+      setRoleText(roles[roleIndex].slice(0, charIndex) + cursor);
 
-        if (
-          window.scrollY >= sectionTop &&
-          window.scrollY < sectionTop + sectionHeight
-        ) {
-          currentSection = section.getAttribute("id");
+      if (!deleting) {
+        charIndex++;
+        if (charIndex > roles[roleIndex].length) {
+          deleting = true;
+          setTimeout(() => {}, 1000);
         }
-      });
+      } else {
+        charIndex--;
+        if (charIndex === 0) {
+          deleting = false;
+          roleIndex = (roleIndex + 1) % roles.length;
+        }
+      }
+    }, roleSpeed);
 
-      // Update active section
-      setActiveSection(currentSection);
-
-      // Show navbar background only when scrolled to "About" section or beyond
-      setIsScrolled(currentSection && currentSection !== "home");
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="font-sans h-screen bg-gray-50">
-      {/* Navbar */}
-      <nav
-  className={`fixed w-full left-0 top-0 z-50 transition-all duration-300  ${
-    isScrolled ? "bg-white shadow-md" : "bg-transparent"
-  }`}
-  style={{
-    height: "4rem", // Adjust to your navbar height
-  }}
->
-  <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-    <div className="text-2xl font-bold text-black flex items-center relative">
-      <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center absolute -left-4 z-0">
-        A
-      </span>
-      <span className="relative z-10 ml-3">gnes</span>
-    </div>
-    <ul className="flex gap-x-8">
-      {["Home", "About", "Resume", "Services", "Projects", "Contact"].map(
-        (item, index) => {
-          const itemId = item.toLowerCase();
-          return (
-            <li key={index}>
-              <a
-                href={`#${itemId}`}
-                className={`${
-                  activeSection === itemId
-                    ? "text-blue-600 underline decoration-blue-600 underline-offset-8 font-medium"
-                    : "font-thin"
-                } transition duration-200`}
-              >
-                {item}
-              </a>
-            </li>
-          );
-        }
-      )}
-    </ul>
-  </div>
-</nav>
-
-      {/* Hero Section */}
-      <header id="home" className="flex h-screen ">
-        <div className="w-1/2 bg-blue-100"></div>
-        <div className="w-1/2 bg-white"></div>
-        <div className="absolute inset-0 flex items-center justify-center mt-20">
-          <div className="text-center">
-            <p className="text-blue-600 uppercase tracking-widest font-medium">
-              Hey! I am
-            </p>
-            <h1 className="text-5xl font-extrabold mt-4">
-              Agnes Dansowaa Odame
-            </h1>
-            <h2 className="text-2xl mt-4 flex justify-center items-center">
-              <span>I'm a&nbsp;</span>
-              <span className="text-blue-600 font-bold underline">
-                <Typewriter
-                  options={{
-                    strings: ["Frontend web developer."],
-                    autoStart: true,
-                    loop: true,
-                  }}
-                />
-              </span>
-            </h2>
-            <div className="mt-10">
-              <a href="#about">
-                <div className="animate-bounce text-blue-600 text-2xl">↓</div>
-              </a>
-            </div>
+    <div>
+    {/* Navbar */}
+    <nav className=" top-0 left-0 w-full bg-transparent  p-4 z-10">
+      <div className="container mx-auto flex justify-between items-center">
+        {/* Left Side - Portfolio */}
+        <div className="text-xl font-bold text-[#31245C]">Portfolio</div>
+        {/* Right Side - Resume */}
+        <div>
+          <a href="#resume" className="text-lg text-[#31245C] font-medium hover:text-[#713EDA] transition">
+            Resume
+          </a>
+        </div>
+      </div>
+    </nav>
+    
+    {/* Hero Section */}
+    <div 
+      className="h-screen flex items-center justify-center bg-cover bg-center" 
+      style={{ backgroundImage: `url(${heroImage})` }}
+    >
+      
+      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
+          {/* Left Side - Text */}
+          <div className="md:w-1/2 ml-20">
+           <p className=" font-bold mb-4 text-[#713EDA]">Hello, I Am</p>
+            <h1 className="text-5xl mb-6 text-[#31245C]">Agnes Dansowaa Odame</h1>
+            <h2 className='text-2xl'> <span className='underline text-[#31245C]'>{roleText}</span></h2>
+           
+          </div>
+          
+          {/* Right Side - Image */}
+          <div className="md:w-1/2 flex justify-center size-auto mr-10">
+            <img src= {heroImageTwo} alt="Hero" className="rounded-lg " />
           </div>
         </div>
-      </header>
+      </div>
+  
+  </div>
+  )
+}
 
-      {/* Render Sections */}
-      <main>
-        <About />
-        <Resume />
-        <Services />
-        <Projects />
-        <ContactMe />
-      </main>
-    </div>
-  );
-};
-
-export default Hero;
+export default Hero
