@@ -43,7 +43,7 @@ const Hero = () => {
           <div className="text-xl font-bold text-[#31245C]">Portfolio</div>
           {/* Right Side - Resume */}
           <div>
-            <a href="#resume" className="text-lg text-[#31245C] font-medium hover:text-[#713EDA] transition">
+            <a href="https://1drv.ms/b/s!AvubgtSZ-9rBkZQzZHuYYd0g_Sludw?e=b43fij" className="text-lg text-[#31245C] font-medium hover:text-[#713EDA] transition">
               Resume
             </a>
           </div>
