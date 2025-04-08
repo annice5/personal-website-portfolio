@@ -36,44 +36,43 @@ const Hero = () => {
 
   return (
     <div>
-    {/* Navbar */}
-    <nav className=" top-0 left-0 w-full bg-transparent  p-4 z-10">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* Left Side - Portfolio */}
-        <div className="text-xl font-bold text-[#31245C]">Portfolio</div>
-        {/* Right Side - Resume */}
-        <div>
-          <a href="#resume" className="text-lg text-[#31245C] font-medium hover:text-[#713EDA] transition">
-            Resume
-          </a>
+      {/* Navbar */}
+      <nav className="top-0 left-0 w-full bg-transparent p-4 z-10">
+        <div className="container mx-auto flex justify-between items-center">
+          {/* Left Side - Portfolio */}
+          <div className="text-xl font-bold text-[#31245C]">Portfolio</div>
+          {/* Right Side - Resume */}
+          <div>
+            <a href="#resume" className="text-lg text-[#31245C] font-medium hover:text-[#713EDA] transition">
+              Resume
+            </a>
+          </div>
         </div>
-      </div>
-    </nav>
-    
-    {/* Hero Section */}
-    <div 
-      className="h-screen flex items-center justify-center bg-cover bg-center" 
-      style={{ backgroundImage: `url(${heroImage})` }}
-    >
-      
-      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
+      </nav>
+
+      {/* Hero Section */}
+      <div
+        className="h-screen flex items-center justify-center bg-cover bg-center px-4"
+        style={{ backgroundImage: `url(${heroImage})` }}
+      >
+        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
           {/* Left Side - Text */}
-          <div className="md:w-1/2 ml-20">
-           <p className=" font-bold mb-4 text-[#713EDA]">Hello, I Am</p>
-            <h1 className="text-5xl mb-6 text-[#31245C]">Agnes Dansowaa Odame</h1>
-            <h2 className='text-2xl'> <span className='underline text-[#31245C]'>{roleText}</span></h2>
-           
+          <div className="md:w-1/2 w-full text-center md:text-left md:ml-20">
+            <p className="font-bold mb-4 text-[#713EDA]">Hello, I Am</p>
+            <h1 className="text-4xl md:text-5xl mb-6 text-[#31245C]">Agnes Dansowaa Odame</h1>
+            <h2 className="text-xl md:text-2xl">
+              <span className="underline text-[#31245C]">{roleText}</span>
+            </h2>
           </div>
-          
+
           {/* Right Side - Image */}
-          <div className="md:w-1/2 flex justify-center size-auto mr-10">
-            <img src= {heroImageTwo} alt="Hero" className="rounded-lg " />
+          <div className="md:w-1/2 w-full flex justify-center md:mr-10">
+            <img src={heroImageTwo} alt="Hero" className="rounded-lg w-full max-w-xs md:max-w-md lg:max-w-lg" />
           </div>
         </div>
       </div>
-  
-  </div>
+    </div>
   )
 }
 
-export default Hero
+export default Hero;
